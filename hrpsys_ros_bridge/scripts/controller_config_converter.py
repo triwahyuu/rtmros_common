@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     print('controller_configuration:', file=of)
 
-    for limb in lst.keys():
+    for limb in list(lst.keys()):
         if limb == 'sensors':
             continue
         if limb.endswith('-coords') or limb.endswith('-vector'):
