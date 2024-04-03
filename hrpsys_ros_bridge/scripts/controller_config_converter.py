@@ -41,7 +41,7 @@ if __name__ == '__main__':
             continue
         if limb == 'links' or limb == 'replace_xmls':
             continue
-        jlst = [j.keys()[0] for j in lst[limb] if isinstance(j, dict) and isinstance(j.values()[0], str)]
+        jlst = [list(j.keys())[0] for j in lst[limb] if isinstance(j, dict) and isinstance(list(j.values())[0], str)]
         if len(jlst) > 0:
             print('  - group_name: ' + limb, file=of)
             print('    controller_name: /' + limb + '_controller', file=of)
