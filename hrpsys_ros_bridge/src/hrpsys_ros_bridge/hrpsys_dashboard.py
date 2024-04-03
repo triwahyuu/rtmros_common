@@ -70,9 +70,9 @@ class HrpsysLogMenu(MenuDashWidget):
     try:
       hrpsys_save = rospy.ServiceProxy("/DataLoggerServiceROSBridge/save", OpenHRP_DataLoggerService_save )
       name = "/tmp/rtclog-" + time.strftime("%Y%m%d%H%M%S")
-      print "Writing log data to ",name
+      print("Writing log data to ",name)
       hrpsys_save(OpenHRP_DataLoggerService_saveRequest(name))
-      print "Done writing",name
+      print("Done writing",name)
     except rospy.ServiceException, e:
       mb = QMessageBox(QMessageBox.NoIcon, "Error",
                        "Failed to save rtcd log: service call failed with error: %s"%(e),
@@ -335,7 +335,7 @@ def execHrpsysConfiguratorCommand(command_str):
     try:
         exec command_str
     except:
-        print >>sys.stderr, "Button execution for ", command_str, "failed, perhaps because of CORBA connection. Retry it once after resetting HrpsysConfigurator."
+        print("Button execution for ", command_str, "failed, perhaps because of CORBA connection. Retry it once after resetting HrpsysConfigurator.", file=sys.stderr)
         hcf=setupHrpsysConfigurator()
         exec command_str
 

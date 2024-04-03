@@ -201,7 +201,7 @@ if __name__ == '__main__':
                 time.sleep(2)
                 rtc_init()
             except Exception as e:
-                print "[collision_state.py] catch exception", e
+                print("[collision_state.py] catch exception", e)
             r.sleep()
 
     except rospy.ROSInterruptException: pass
