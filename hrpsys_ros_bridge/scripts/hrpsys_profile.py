@@ -92,10 +92,10 @@ if __name__ == '__main__':
         while not rospy.is_shutdown():
             try :
                 hrpsys_profile()
-            except (omniORB.CORBA.TRANSIENT, omniORB.CORBA.BAD_PARAM, omniORB.CORBA.COMM_FAILURE), e :
+            except (omniORB.CORBA.TRANSIENT, omniORB.CORBA.BAD_PARAM, omniORB.CORBA.COMM_FAILURE) as e :
                 print("[hrpsys_profile.py] catch exception", e)
                 rtc_init()
-            except Exception, e:
+            except Exception as e:
                 pass
 
             r.sleep()

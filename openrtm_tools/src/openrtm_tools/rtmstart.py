@@ -26,7 +26,7 @@ def start_cosname(cosnames, port_number):
                     cxt = findObject(socket.gethostname(), "host_cxt")
                     obj = findObject("manager", "mgr", cxt)
                     start_naming = False
-                except CosNaming.NamingContext.NotFound, ex:
+                except CosNaming.NamingContext.NotFound as ex:
                     # this is ok since host_cxt, manager is not bind
                     start_naming = False
                     pass
