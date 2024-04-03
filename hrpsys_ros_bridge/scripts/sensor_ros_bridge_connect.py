@@ -40,7 +40,7 @@ def connecSensorRosBridgePort(url, rh, bridge, vs, rmfo, sh, es, rfu, subscripti
         else:
             continue
     if vs != None:
-        for vfp in filter(lambda x : str.find(x, 'v') >= 0 and str.find(x, 'sensor') >= 0, vs.ports.keys()):
+        for vfp in filter(lambda x : str.find(x, 'v') >= 0 and str.find(x, 'sensor') >= 0, list(vs.ports.keys())):
             print(program_name, "connect ", vfp, vs.port(vfp).get_port_profile().name, bridge.port(vfp).get_port_profile().name)
             connectPorts(vs.port(vfp), bridge.port(vfp), subscription_type, rate=push_rate, pushpolicy=push_policy)
             print(program_name, "connect ", vfp, sh.port(vfp+"Out").get_port_profile().name, bridge.port("ref_"+vfp).get_port_profile().name)
