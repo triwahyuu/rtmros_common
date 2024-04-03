@@ -104,7 +104,7 @@ def rtconnect(nameserver, tags, tree):
             wait_component(dest_full_path, tree)
             if check_connect(source_full_path,dest_full_path, tree):
                 continue
-        except Exception, e:
+        except Exception as e:
             print('\033[31m[rtmlaunch] [ERROR] Could not Connect (', source_full_path, ',', dest_full_path, '): ', e,'\033[0m', file=sys.stderr)
             return 1
         #print source_path, source_full_path, dest_path, dest_full_path;
@@ -131,10 +131,10 @@ def rtconnect(nameserver, tags, tree):
             print("[rtmlaunch]           with",options, file=sys.stderr)
             try :
                 rtcon.connect_ports(source_path, source_full_path, dest_path, dest_full_path, options, tree=tree)
-            except Exception, e_1_1_0: # openrtm 1.1.0
+            except Exception as e_1_1_0: # openrtm 1.1.0
                 try:
                     rtcon.connect_ports([(source_path,source_full_path), (dest_path, dest_full_path)], options, tree=tree)
-                except Exception, e_1_0_0: # openrtm 1.0.0
+                except Exception as e_1_0_0: # openrtm 1.0.0
                     print('\033[31m[rtmlaunch] {0} did not work on both OpenRTM 1.0.0 and 1.1.0'.format(os.path.basename(sys.argv[1])),'\033[0m', file=sys.stderr)
                     print('\033[31m[rtmlaunch]    OpenRTM 1.0.0 {0}'.format(e_1_0_0),'\033[0m', file=sys.stderr)
                     print('\033[31m[rtmlaunch]    OpenRTM 1.1.0 {0}'.format(e_1_1_0),'\033[0m', file=sys.stderr)
@@ -144,7 +144,7 @@ def rtconnect(nameserver, tags, tree):
                     print('\033[31m[rtmlaunch] please see FAQ site http://www.openrtm.org/OpenRTM-aist/html/FAQ2FE38388E383A9E38396E383ABE382B7E383A5E383BCE38386E382A3E383B3E382B0.html#f2bc375d\033[0m', file=sys.stderr)
                     print('\033[31m[rtmlaunch]            Issue related to this https://github.com/start-jsk/rtmros_hironx/issues/33\033[0m', file=sys.stderr)
                     print('\033[31m[rtmlaunch]            ~/.ros/log may contains usefully informations\033[0m', file=sys.stderr)
-        except Exception, e:
+        except Exception as e:
             print('\033[31m[rtmlaunch] {0}: {1}'.format(os.path.basename(sys.argv[1]), e),'\033[0m', file=sys.stderr)
     return 0
 
@@ -176,16 +176,16 @@ def rtactivate(nameserver, tags, tree):
                 continue
             else:
                 print("[rtmlaunch] Activate <-",state,full_path, file=sys.stderr)
-        except Exception, e:
+        except Exception as e:
             print('\033[31m[rtmlaunch] Could not Activate (', cmd_path, ') : ', e,'\033[0m', file=sys.stderr)
             return 1
         try:
             options = optparse.Values({"ec_index": 0, 'verbose': False})
             try :
                 state_control_base.alter_component_state(activate_action, cmd_path, full_path, options, tree=tree)
-            except Exception, e: # openrtm 1.1.0
+            except Exception as e: # openrtm 1.1.0
                 state_control_base.alter_component_states(activate_action, [(cmd_path, full_path)], options, tree=tree)
-        except Exception, e:
+        except Exception as e:
             print('[rtmlaunch] {0}: {1}'.format(os.path.basename(sys.argv[0]), e), file=sys.stderr)
             return 1
     return 0
@@ -216,7 +216,7 @@ def main():
                 
         for remove_node in remove_nodes:
             nodes.remove(remove_node)
-    except Exception,e:
+    except Exception as e:
         print(e)
         return 1
 
@@ -232,13 +232,13 @@ def main():
 
     try:
         tree = rtctree.tree.RTCTree()
-    except Exception, e:
+    except Exception as e:
         print("\033[31m[rtmlaunch] Could not start rtmlaunch.py, Caught exception (", e, ")\033[0m", file=sys.stderr)
         # check if host is connected
         try:
             hostname = nameserver.split(':')[0]
             ip_address = socket.gethostbyname(hostname)
-        except Exception, e:
+        except Exception as e:
             print("\033[31m[rtmlaunch] .. Could not find IP address of ", hostname, ", Caught exception (", e, ")\033[0m", file=sys.stderr)
             print("\033[31m[rtmlaunch] .. Please check /etc/hosts or DNS setup\033[0m", file=sys.stderr)
             return 1
