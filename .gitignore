@@ -36,3 +36,10 @@ msg/_.*\.py$
 
 # Catkin custom files
 CATKIN_IGNORE
+
+
+__pycache__/
+*.py[cod]
+
+sample4legrobot*
+samplespecialjointrobot*
