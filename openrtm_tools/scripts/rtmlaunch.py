@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import print_function
 
 from openrtm_tools import rtmlaunchlib
 
